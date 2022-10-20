@@ -332,12 +332,18 @@ For example, if you put an image `image.jpg` inside of the folder where your mdx
 |---|---|---|---|
 | dataPath | string | `''` | Path for data. The data should be either in `csv` or `json` format. Use parcel's URL builder to use local file. (Refer to the example below.) |
 | xKey | string | `''` | Attribute to be used for x axis. |
-| yKey | string | `''` | Attribute to be used for y axis |
-| idKey | string | `''` | Attribute for each data point |
+| yKey | string | `''` | Attribute to be used for y axis. |
+| idKey | string | `''` | Attribute for each data point. (The data will be sorted alphabetical order.) |
 | dateFormat | string | `''` | Template for how temporal date is formatted. This follows [d3's convention for date format](https://github.com/d3/d3-time-format#locale_format) |
+| xAxisLabel | string | `''` | Label for x axis. |
+| yAxisLabel | string | `''` | Label for y axis. Use this attribute if the value needs unit such as `%`. |
+| altTitle | string | `''` | Title of the chart. This will help increase the accessibility of Chart. |
+| altDesc | string | `''` | Description of the chart. Avoid a generic description such as 'covid case chart'. Put what you are trying to deliver through the chart ex. 'covid case spiked throughout all the counties in New York state.') |
+| colors | array | `undefined` | Colors for lines. Use [HTML color name](https://www.w3schools.com/colors/colors_names.asp). The order of colors needs to match to the order of lines. (Mind that the data is sorted alphabetically. So if you want to give `red` color for `apple` and `yellow` for `lemon`, you will need to pass [`red`,`yellow`] for `colors`. ) |
+| colorScheme | string | `'viridis'` | One of [d3 chromatic diverging](https://github.com/d3/d3-scale-chromatic#diverging) or [sequential color scheme](https://github.com/d3/d3-scale-chromatic#sequential-multi-hue). Use only the name of the scheme. ex. if you want `schemePuOr`, use `puOr`. When `colors` is defined, `colorScheme` attribute is ignored.|
 | highlightStart | string | `''` | Start point for x axis to draw highlighted area. |
 | highlightEnd | string | `''` | End point of x axis to draw highlighted area.
-| highlightLabel | string | `''` | Label for highlighted area. |
+| highlightLabel | string | `''` | Label for highlighted area. This label will sit on top of the legend.|
 
 Syntax for Chart used in Wide Figure Block looks like this. Check how the data is formatted in [example.csv](./media/example.csv).
 
@@ -371,6 +377,10 @@ Syntax for Chart used in Wide Figure Block looks like this. Check how the data i
 | dateTime | string | `''` | Optional. This string should follow `yyyy-mm-dd` format. When omitted, the very first available dateTime for the dataset will be displayed |
 | compareDateTime | string | `''` | Optional. This string should follow `yyyy-mm-dd` format. A date should only be specified if you wish to display the comparison slider |
 | compareLabel | string | `''` | Text to display over the map when the comparison is active. If is for example used to indicate what dates are being compared. If not provided it will default to the value specified in the [dataset layer configuration](./frontmatter/layer.md#compare) |
+| projectionId | string | `mercator` | The id of the [projection](./frontmatter/layer.md#projections) to load. |
+| projectionCenter | [int, int] | `''` | Projection center for Conic projections |
+| projectionParallels | [int, int] | `''` | Projection parallels for Conic projections |
+| allowProjectionChange | boolean | `true` | Whether or not the user can change the position using a projection selector dropdown added to the map |
 
 Syntax for Map, which displays `nightlights-hd-monthly` layer from `sandbox` dataset in full figure block looks like this:
 
@@ -435,6 +445,14 @@ The scrollytelling is defined as a series os `Chapters` inside the `Scrollytelli
 | layerId | boolean | `id` of the dataset layer to display |
 | datetime | boolean | Optional. If the layer to display has a temporal extent, specify the datetime |
 | showBaseMap | boolean | Optional. If there is a need to show basemap without any additional layers ontop, pass `true`. (datasetId, layerId can be omitted when `showBaseMap` is `true`) |
+| projectionName | string | `mercator` | The name of the [projection](./frontmatter/layer.md#projections) to load. |
+| projectionCenter | [int, int] | Projection center for Conic projections |
+| projectionParallels | [int, int] | Projection parallels for Conic projections |
+
+
+🧑‍🎓 **Notes on projections**  
+- As with other properties, the user is not allowed to change the projection used in a chapter
+- Once a chapter with a set projection is reached, that projection will be used on subsequent chapters, until one specifies a different projection.
 
 ## Some gotchas
 
