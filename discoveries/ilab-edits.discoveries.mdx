@@ -1,0 +1,79 @@
+---
+id: "DSG edits"
+name: Test DSG edits
+description: How NASA blah blah blah
+media:
+  src: ::file ./sea-ice--discovery-cover.jpg
+  alt: Fragmented sea ice in a blue sea
+  author:
+    name: cssprad1
+    url: https://unsplash.com/photos/LzwNq8DVQzs
+pubDate: 2022-09-09
+thematics:
+  - eis
+---
+
+<Block>
+  <Prose>
+    THIS IS A TEST. THIS IS A TEST. THIS IS A TEST. THIS IS A TEST. 
+    THIS IS A TEST. THIS IS A TEST. THIS IS A TEST. THIS IS A TEST. 
+    THIS IS A TEST. THIS IS A TEST. THIS IS A TEST. THIS IS A TEST. 
+  </Prose>
+  <Figure>
+    <Image
+      src={new URL("./polar-bear.jpg", import.meta.url).href}
+      alt="Sad looking polar bear standing on thin ice"
+    />
+    <Caption
+      attrAuthor="Andreas Weith"
+      attrUrl="https://commons.wikimedia.org/wiki/File:Endangered_arctic_-_starving_polar_bear_edit.jpg"
+    />
+  </Figure>
+</Block>
+
+<Block>
+   <Prose>
+    ## United States
+      For example, this image shows decreases in SO<sub>2</sub> and NO<sub>2</sub> in the Ohio River Valley region of the United States. 
+      
+      The decreases in the U.S. can be attributed in large part to improved emissions from cars and trucks, as well as a reduction in the sulfur content in fuel. Some improvement is also the result of technology that does a better job of trapping nitrogen and sulfur oxides from power plant smokestacks.
+
+  </Prose>
+  <Figure>
+    <Chart
+      dataPath={new URL('./no2-and-so2-charts.csv', import.meta.url).href}
+      dateFormat="%Y" 
+      idKey='Data Type' 
+      xKey='Year' 
+      yKey='United States Change from 2005' 
+    />
+    <Caption 
+    /> 
+  </Figure>
+</Block>
+
+<Block type="full">
+  <Figure>
+    <iframe
+      width="100%"
+      style={{ aspectRatio: "16/9" }}
+      src="https://www.youtube.com/embed/9einyMSOmHE"
+      title="Sea Ice Thickness"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    />
+    <Caption>
+      Video about how ESA measures sea ice thickness from space.
+    </Caption>
+  </Figure>
+</Block>
+
+<Block>
+  <Prose>
+    ESA has been building radar altimeters since the early 1990s. Radar altimeters use a microwave signal to measure sea ice freeboard. In this frequency band, the signal can penetrate further into the snow that often lies on top of sea ice. To better understand how far the radar signals can penetrate the snowpack, separate field or airborne campaigns are used to validate the satellite signals. Ongoing research is comparing altimeter signals at different frequencies to calculate how much snow lies on top of the sea ice. This is important as the amount of snow can also impact the freeboard—for instance a heavy snow-load can weigh the sea ice down and may even push it under water.
+
+    Once the freeboard has been established, it can be converted to sea ice thickness. The ESA Climate Change Initiative Sea Ice Thickness data set presented here shows the decrease in winter sea ice thickness over the past 15 years using satellite information from ESA's Envisat and CryoSat-2 missions.
+    </Prose>
+
+</Block>
